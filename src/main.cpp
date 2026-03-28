@@ -1,6 +1,6 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello, World from Dockerized C++!" << std::endl;
+    std::cout << "Hello CI/CD - version 2 🚀" << std::endl;
     return 0;
-}
+}git 
