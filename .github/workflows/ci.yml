@@ -1,8 +1,9 @@
-
 name: C++ Docker CI
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -10,10 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Build Docker
-      run: docker build -t cpp-hello .
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: Run test
-      run: docker run --rm cpp-hello
+      - name: Build Docker image
+        run: docker build -t cpp-helloworld .
+
+      - name: Run container
+        run: docker run cpp-helloworld
